@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image, Picture } from '@astrojs/image/components';
+import { getBlogs } from '../library/microcms';
+import Card from '../components/Card.astro';
+const response = await getBlogs({ fields: ['id', 'title'] });
+---
+
+<Layout title='My first Astro Blog'>
+	<main>
+		<h1 class='title'>My First <span class='text-gradient'>Astro</span> Blog</h1>
+		<div class='content'>
+			<ul class='list'>
+				{response.contents.map((content: any) => <Card href={content.id} title={content.title} />)}
+			</ul>
+		</div>
+	</main>
+</Layout>
+
+<style scoped>
+	.title {
+		text-align: center;
+		margin: 0;
+		padding: 1em 0;
+	}
+
+	.list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 5%;
+		margin: 0;
+		padding: 0;
+	}
+	@media (max-width: 650px) {
+		.list {
+			display: grid;
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+</style>
