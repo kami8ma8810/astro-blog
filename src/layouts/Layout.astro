@@ -7,12 +7,12 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width' />
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<meta name='generator' content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
@@ -21,15 +21,42 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		/* --accent: 255, 226, 0; */
+		--accent: 46, 156, 24;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(255, 226, 0) 30%, white 60%);
+		--cWhite: #fff;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+		background-color: #19242e;
+		color: var(--cWhite);
+	}
+	body {
+		margin: 0;
 	}
 	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+			monospace;
+	}
+	ul,
+	li {
+		margin: 0;
+		padding: 0;
+	}
+
+	.content {
+		margin-top: min(10%, 80px);
+		padding: 0 min(5%, 40px);
+	}
+	.title {
+		font-size: min(8vw, 4rem);
+		font-weight: 700;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
 	}
 </style>
