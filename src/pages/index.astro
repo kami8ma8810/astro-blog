@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import { Image, Picture } from '@astrojs/image/components';
 import { getBlogs } from '../library/microcms';
 import Card from '../components/Card.astro';
+import { Img } from 'astro-imagetools/components';
+
+const remoteImage = 'https://picsum.photos/1024/768';
 const response = await getBlogs({ fields: ['id', 'title'] });
 ---
 
@@ -13,6 +16,18 @@ const response = await getBlogs({ fields: ['id', 'title'] });
 			<ul class='list'>
 				{response.contents.map((content: any) => <Card href={content.id} title={content.title} />)}
 			</ul>
+			<figure class='figure'>
+				<figcaption>Local Image with @astrojs/image</figcaption>
+				<Image src={remoteImage} width={1920} aspectRatio='1:1' format='jpg' alt='' />
+			</figure>
+			<figure class='figure'>
+				<figcaption>Local Image with astro-imagetools</figcaption>
+				<Img src='/src/assets/images/paint.jpg' alt='' />
+			</figure>
+			<figure class='figure'>
+				<figcaption>Remote Image with astro-imagetools</figcaption>
+				<Img src='https://picsum.photos/1024/768' alt='A random image' />
+			</figure>
 		</div>
 	</main>
 </Layout>
@@ -36,5 +51,15 @@ const response = await getBlogs({ fields: ['id', 'title'] });
 			display: grid;
 			grid-template-columns: repeat(1, 1fr);
 		}
+	}
+	.figure {
+		margin-top: min(10%, 50px);
+	}
+	.figure img {
+		max-width: 100%;
+		height: auto;
+	}
+	.figure figcaption {
+		font-size: 1.5rem;
 	}
 </style>
