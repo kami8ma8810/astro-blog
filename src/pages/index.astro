@@ -3,9 +3,10 @@ import Layout from '../layouts/Layout.astro';
 // import { Image, Picture } from '@astrojs/image/components';
 import { getBlogs } from '../library/microcms';
 import Card from '../components/Card.astro';
-import { Img } from 'astro-imagetools/components';
+// const { Img } = require('astro-imagetools/components');
+// import { Img } from 'astro-imagetools/components';
 
-const remoteImage = 'https://picsum.photos/1024/768';
+// const remoteImage = 'https://picsum.photos/1024/768';
 const response = await getBlogs({ fields: ['id', 'title'] });
 ---
 
@@ -20,14 +21,14 @@ const response = await getBlogs({ fields: ['id', 'title'] });
 				<figcaption>Local Image with @astrojs/image</figcaption>
 				<Image src={remoteImage} width={1920} aspectRatio='1:1' format='jpg' alt='' />
 			</figure> -->
-			<figure class='figure'>
+			<!-- <figure class='figure'>
 				<figcaption>Local Image with astro-imagetools</figcaption>
 				<Img src='/src/assets/images/paint.jpg' alt='' />
 			</figure>
 			<figure class='figure'>
 				<figcaption>Remote Image with astro-imagetools</figcaption>
 				<Img src='https://picsum.photos/1024/768' alt='A random image' />
-			</figure>
+			</figure> -->
 		</div>
 	</main>
 </Layout>
